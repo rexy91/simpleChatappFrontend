@@ -8,22 +8,32 @@ export class Homepage extends Component {
     state={
         allUsers:[]
     }
-    renderDropdown = () => {
-        return <select class="ui dropdown">
-        <option value="">Users</option>
-        <option value="1">Male</option>
-        <option value="0">Female</option>
-      </select>
-                
+
+    componentDidMount(){
+        fetch(`http://localhost:3000/users`,{
+        method:'GET'
+        })
+        .then(res => res.json())
+        .then(allUsers => {
+            this.setState({
+                allUsers:allUsers
+            })
+        })
     }
+
     render() {
         const {user} = this.props
         const {first_name, last_name, username} = user
-        
+        const usersMapper = this.state?.allUsers?.map(singleUser => {
+            return <option value={singleUser.id}>{singleUser.username}</option>
+        })
         return (
             <div>
                 <h4>Logged In as: {username}</h4>
-                {this.renderDropdown()}
+                <h5>Message To:</h5>
+                <select className='ui dropdown'>
+                {usersMapper}
+                </select>
             </div>
         )
     }
