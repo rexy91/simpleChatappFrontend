@@ -38,6 +38,7 @@ export class Signup extends Component {
           })
             .then(r => r.json())
             .then(newUser => {
+                console.log(newUser)
                 this.props.history.push('/home')
             })
     }
