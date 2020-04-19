@@ -1,0 +1,10 @@
+#app-title{
+    text-align: center;
+}
+
+.chat-container{
+    border: solid 1px;
+    margin-left: 20%;
+    margin-right: 20%;
+    
+}
