@@ -21,7 +21,13 @@ export class Homepage extends Component {
         })
     }
 
+    dropdownSelect = (e) => {
+
+        this.props.history.push(`/${this.props.user.id}/conversation`)
+    }
+
     render() {
+        console.log(this.props)
         const {user} = this.props
         const {first_name, last_name, username} = user
         const usersMapper = this.state?.allUsers?.map(singleUser => {
@@ -31,7 +37,7 @@ export class Homepage extends Component {
             <div>
                 <h4>Logged In as: {username}</h4>
                 <h5>Message To:</h5>
-                <select className='ui dropdown'>
+                <select onChange={this.dropdownSelect}className='ui dropdown'>
                 {usersMapper}
                 </select>
             </div>
@@ -39,4 +45,4 @@ export class Homepage extends Component {
     }
 }
 
-export default Homepage
+export default withRouter(Homepage)

@@ -3,6 +3,7 @@ import ChatContainer from './Components/ChatContainer'
 import {Route, Switch} from 'react-router-dom'
 import Signup from './Components/Signup'
 import Homepage from './Components/Homepage'
+import ConversationContainer from './Components/ConversationContainer'
 
 export class App extends Component {
   state = {
@@ -33,7 +34,9 @@ export class App extends Component {
           <h3 id ='app-title'> Chatting App</h3>
         <Switch>
               <Route path = '/home' component = { () =>  <Homepage  user={this.state.currentUser}/> } />
-              <Route path = '/' component={ Signup }/>
+               {/* exact path so only '/' will render signup, not if there is anything after it.  */}
+              <Route exact path = '/' component={ Signup }/>
+              <Route exact path ='/:id/conversation' component = { ConversationContainer }/>
         </Switch>
       </div>
     )
