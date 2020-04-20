@@ -20,14 +20,14 @@ export class Homepage extends Component {
             })
         })
     }
-
+    
     dropdownSelect = (e) => {
-
+        console.log(e.target.options[e.target.selectedIndex].text)
+        const receving_msg_user = e.target.text
         this.props.history.push(`/${this.props.user.id}/conversation`)
     }
 
     render() {
-        console.log(this.props)
         const {user} = this.props
         const {first_name, last_name, username} = user
         const usersMapper = this.state?.allUsers?.map(singleUser => {
@@ -37,8 +37,8 @@ export class Homepage extends Component {
             <div>
                 <h4>Logged In as: {username}</h4>
                 <h5>Message To:</h5>
-                <select onChange={this.dropdownSelect}className='ui dropdown'>
-                {usersMapper}
+                <select onChange={this.dropdownSelect} className='ui dropdown'>
+                {usersMapper} 
                 </select>
             </div>
         )
