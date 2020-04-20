@@ -22,9 +22,9 @@ export class Homepage extends Component {
     }
     
     dropdownSelect = (e) => {
-        console.log(e.target.options[e.target.selectedIndex].text)
-        const receving_msg_user = e.target.text
-        this.props.history.push(`/${this.props.user.id}/conversation`)
+        const receving_msg_user_id = e.target.value
+        // now this.props.history in conversation component will have receving user id, so we can fetch that user object to persist message.
+        this.props.history.push(`/${this.props.user.id}/${receving_msg_user_id}/conversation`)
     }
 
     render() {

@@ -2,12 +2,21 @@ import React, { Component } from 'react'
 
 
 export class ConversationContainer extends Component {
+
+
+    // fetch recipient object
+    // Conversation will need both current user and recipient user to persists messages.
+    
+    componentDidMount(){
+        const recipient_id = this.props.match.params.receiving_user_id
+        
+    }
     render() {
         return (
             <div className='conver-container'>
                 <div className='ui grid'>
                     <div className='sixteen wide column border conversation-box'>
-                            <h1>fdfdf</h1>
+                            
                     </div>
                     <div className='sixteen wide column message-box'>
                             <form action="">

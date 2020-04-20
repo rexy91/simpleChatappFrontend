@@ -36,7 +36,7 @@ export class App extends Component {
               <Route path = '/home' component = { () =>  <Homepage  user={this.state.currentUser}/> } />
                {/* exact path so only '/' will render signup, not if there is anything after it.  */}
               <Route exact path = '/' component={ Signup }/>
-              <Route exact path ='/:id/:name/conversation' component = { ConversationContainer }/>
+              <Route exact path ='/:current_user_id/:receiving_user_id/conversation' component = { ConversationContainer }/>
         </Switch>
       </div>
     )
