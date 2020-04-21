@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Form, Button, Checkbox} from 'semantic-ui-react'
-
+import {withRouter} from 'react-router-dom'
 export class Signup extends Component {
     state = {
         firstname:'',
@@ -95,4 +95,4 @@ export class Signup extends Component {
     }
 }
 
-export default Signup
+export default withRouter(Signup)

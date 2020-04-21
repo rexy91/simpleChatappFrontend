@@ -9,7 +9,9 @@ import Login from './Components/Login/Login'
 export class App extends Component {
   state = {
     //Without using redux, we need local state to store the user object.
-    currentUser: {}
+    currentUser: {},
+    currentToken:''
+
   }
 
   componentDidMount(){
@@ -22,22 +24,46 @@ export class App extends Component {
           })
           .then(res => res.json())
           .then(resp => {
+            console.log(resp)
             this.setState({
-              currentUser:resp.user
+              currentUser:resp.user,
+              currentToken:resp.token
             })
           })
         }
   }
 
-  render() {
+  handleLoginOnAppJS = (username,password) =>{
+    fetch(`http://localhost:3000/login`, {
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body:JSON.stringify({
+          username,
+          password
+      })
+  })
+  .then(res => res.json())
+  .then(resp => {
+    localStorage.setItem("token", resp.token)
+      this.setState({
+        currentUser:resp.user,
+        currentToken:resp.token 
+      })
+  })
+  }
+
+  render() {  
     return (
       <div >
           <h3 id ='app-title'> Chatting App</h3>
         <Switch>
               <Route path = '/home' component = { () =>  <Homepage  user={this.state.currentUser}/> } />
                {/* exact path so only '/' will render signup, not if there is anything after it.  */}
-              <Route exact path = '/' component={ Signup }/>
-              <Route path = '/login' component= { Login }/>
+              <Route exact path = '/' component= { Signup } /> }/>
+              <Route path = '/login' component={ ()=> <Login handleLoginOnAppJS={this.handleLoginOnAppJS} /> }/>
               <Route exact path ='/:current_user_id/:receiving_user_id/conversation' component = { ()=> <ConversationContainer user={this.state.currentUser} /> }/>
         </Switch>
       </div>

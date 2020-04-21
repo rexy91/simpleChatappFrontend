@@ -2,18 +2,42 @@ import React, { Component } from 'react'
 import './Login.css'
 
 export class Login extends Component {
+    
+    state={
+        username:'',
+        password:''
+    }
+
+    handleLogin = (e) => {
+        e.preventDefault()
+        const username = e.target.username.value
+        const password = e.target.password.value
+
+        this.props.handleLoginOnAppJS(username,password)
+        this.setState({
+            username:'',
+            password:''
+        })
+    }   
+
+    handleOnchange = (e) => {
+        this.setState({
+            [e.target.name]:e.target.value
+        })
+    }
     render() {
         return (
             <div className='loginForm'>
-                <form></form>
+                <form onSubmit={this.handleLogin} >
                 <h3>Please Login</h3>
                 <label >Username</label>
-                <input type="text" name='username' placeholder='username'/>
+                <input value={this.state.username} onChange={this.handleOnchange} className='ml-3' type="text" name='username' placeholder='username'/>
                 <br/>
                 <label >Password</label>
-                <input type="password" name='password' placeholder='password'/>
+                <input value={this.state.password} onChange={this.handleOnchange} className='ml-3' type="password" name='password' placeholder='password'/>
                 <br/>
-                <button type='submit'>Login</button>
+                <button className='mt-3'type='submit'>Login</button>
+                </form>
             </div>
         )
     }
