@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router-dom'
 import './Login.css'
 
 export class Login extends Component {
@@ -18,6 +19,7 @@ export class Login extends Component {
             username:'',
             password:''
         })
+        this.props.history.push('/home')
     }   
 
     handleOnchange = (e) => {
@@ -43,4 +45,4 @@ export class Login extends Component {
     }
 }
 
-export default Login
+export default withRouter(Login)

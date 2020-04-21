@@ -24,7 +24,6 @@ export class App extends Component {
           })
           .then(res => res.json())
           .then(resp => {
-            console.log(resp)
             this.setState({
               currentUser:resp.user,
               currentToken:resp.token
