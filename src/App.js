@@ -4,6 +4,7 @@ import {Route, Switch} from 'react-router-dom'
 import Signup from './Components/Signup'
 import Homepage from './Components/Homepage'
 import ConversationContainer from './Components/ConversationContainer'
+import Login from './Components/Login/Login'
 
 export class App extends Component {
   state = {
@@ -36,7 +37,8 @@ export class App extends Component {
               <Route path = '/home' component = { () =>  <Homepage  user={this.state.currentUser}/> } />
                {/* exact path so only '/' will render signup, not if there is anything after it.  */}
               <Route exact path = '/' component={ Signup }/>
-              <Route exact path ='/:current_user_id/:receiving_user_id/conversation' component = { ConversationContainer }/>
+              <Route path = '/login' component= { Login }/>
+              <Route exact path ='/:current_user_id/:receiving_user_id/conversation' component = { ()=> <ConversationContainer user={this.state.currentUser} /> }/>
         </Switch>
       </div>
     )

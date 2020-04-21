@@ -43,10 +43,17 @@ export class Signup extends Component {
             })
     }
 
+    renderLogin = () =>{
+        this.props.history.push('/login')
+    }
+
     render() {
         return (
             <div>  
+                <div>
                   <h3 style={{textAlign:'center'}}>Register</h3>
+                  <h3 onClick = {this.renderLogin} style={{textAlign:'center'}}>Login</h3>
+                </div>
                   <Form onSubmit={this.handlesignup}>
                         <Form.Field>
                         <label>First Name</label>

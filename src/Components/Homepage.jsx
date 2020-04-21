@@ -26,7 +26,7 @@ export class Homepage extends Component {
         // now this.props.history in conversation component will have receving user id, so we can fetch that user object to persist message.
         this.props.history.push(`/${this.props.user.id}/${receving_msg_user_id}/conversation`)
     }
-
+    
     render() {
         const {user} = this.props
         const {first_name, last_name, username} = user
